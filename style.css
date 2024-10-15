@@ -1,25 +1,97 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
   box-sizing: border-box;
 }
-.container {
-  width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #153677, #4e085f);
-  padding: 10px;
+
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(taskmanager.png);
+}
+
+.upcontainer {
+  width: 90%;
+  max-width: 1800px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 48px;
+  color: white;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+.search-bar input {
+  width: 600px;
+  padding: 15px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 16px;
+  color: #777;
+  background-color: white;
+}
+
+.icon {
+  width: 75px;
+  height: 75px;
+  background-image: url(me.png);
+  background-size: cover;
+  background-position: 6px;
+  border-radius: 50%;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+}
+
+footer pre {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  letter-spacing: 3px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
 }
 .taskm {
   width: 100%;
-  max-width: 540px;
+  max-width: 600px;
   background: #fff;
-  margin: 100px auto 20px;
+  margin: 120px auto 20px;
   padding: 40px 30px 70px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .taskm h2 {
-  color: #002765;
+  color: #166d3b;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -48,16 +120,17 @@ button {
   border: none;
   outline: none;
   padding: 16px 50px;
-  background: #ff5945;
+  background: #166d3b;
   color: #fff;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 40px;
 }
 ul li {
   list-style: none;
   font-size: 17px;
-  padding: 12px 8px 12px 50px;
+  padding: 16px 8px 12px 50px;
   user-select: none;
   cursor: pointer;
   position: relative;

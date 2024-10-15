@@ -7,19 +7,42 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="taskm">
-        <h2>Task Manager <img src="icon.png" /></h2>
-        <div class="row">
-          <input type="text" id="input-box" placeholder="Add your text" />
-          <button onclick="addtask()">Add</button>
+    <div class="upcontainer">
+      <header>
+        <h1>DASHBOARD</h1>
+        <div class="search-bar">
+          <input type="text" placeholder=" Search Tasks" />
+          <div class="icon"></div>
         </div>
-        <ul id="list-container">
-          <!--<li class="checked">Task 1</li>
-            <li>Task 2</li>
-            <li>Task 3</li>-->
-        </ul>
-      </div>
+      </header>
+
+      <main>
+        <div class="container">
+          <div class="taskm">
+            <h2>Welcome Back!<img src="icon.png" /></h2>
+            <div class="row">
+              <input
+                type="text"
+                id="input-box"
+                placeholder="Enter Tasks here"
+              />
+              <button onclick="addtask()">+</button>
+            </div>
+            <ul id="list-container">
+              <!--<li class="checked">Task 1</li>
+                <li>Task 2</li>
+                <li>Task 3</li>-->
+            </ul>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <pre>
+        THANKS FOR VISITING!
+        @apexryan</pre
+        >
+      </footer>
     </div>
 
     <script src="tm.js"></script>
