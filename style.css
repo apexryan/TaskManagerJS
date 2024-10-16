@@ -127,13 +127,35 @@ button {
   cursor: pointer;
   border-radius: 40px;
 }
+.edit-btn {
+  background-image: url(edit.png);
+  background-size: 23px 23px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 23px;
+  height: 23px;
+  border: none;
+  padding: 20px;
+  margin-left: 410px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.edit-btn::after {
+  content: none;
+}
+.edit-btn:hover {
+  background-color: #edeef0;
+  border-radius: 50%;
+}
 ul li {
   list-style: none;
-  font-size: 17px;
-  padding: 16px 8px 12px 50px;
+  font-size: 21px;
+  padding: 14px 8px 12px 50px;
   user-select: none;
   cursor: pointer;
   position: relative;
+  display: flex;
 }
 ul li::before {
   content: "";
@@ -157,10 +179,10 @@ ul li.checked::before {
 ul li span {
   position: absolute;
   right: 0;
-  top: 5px;
+  top: 10px;
   width: 40px;
   height: 40px;
-  font-size: 22px;
+  font-size: 25px;
   color: #555;
   line-height: 40px;
   text-align: center;

@@ -7,14 +7,25 @@ function addtask() {
   } else {
     let li = document.createElement("li");
     li.innerHTML = inputBox.value;
-    listContainer.appendChild(li);
+
+    let editButton = document.createElement("edit-btn");
+    editButton.className = "edit-btn";
+    editButton.onclick = function () {
+      editTask(li);
+    };
+
+    li.appendChild(editButton);
+
     let span = document.createElement("span");
     span.innerHTML = "\u00d7";
     li.appendChild(span);
+
+    listContainer.appendChild(li);
   }
   inputBox.value = "";
   saveData();
 }
+
 listContainer.addEventListener(
   "click",
   function (e) {
@@ -29,10 +40,20 @@ listContainer.addEventListener(
   false
 );
 
+function editTask(taskItem) {
+  var newTaskText = prompt("Edit your task:", taskItem.firstChild.textContent);
+  if (newTaskText !== null && newTaskText !== "") {
+    taskItem.firstChild.textContent = newTaskText;
+    saveData();
+  }
+}
+
 function saveData() {
   localStorage.setItem("data", listContainer.innerHTML);
 }
+
 function displayTask() {
   listContainer.innerHTML = localStorage.getItem("data");
 }
+
 displayTask();
