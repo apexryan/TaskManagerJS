@@ -1,46 +1,72 @@
 const inputBox = document.getElementById("input-box");
+const dueDateInput = document.getElementById("due-date");
 const listContainer = document.getElementById("list-container");
 
 function addtask() {
-  if (inputBox.value === "") {
-    alert("Field cannot be empty!");
-  } else {
-    let li = document.createElement("li");
-    li.innerHTML = inputBox.value;
-
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth() + 1;
-    const year = currentDate.getFullYear();
-    let hours = currentDate.getHours();
-    let ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12;
-    hours = String(hours).padStart(2, "0");
-    const minutes = String(currentDate.getMinutes()).padStart(2, "0");
-    const dateString = `${day}/${month}/${year} , ${hours}:${minutes} ${ampm}`;
-
-    let dateSpan = document.createElement("dtspan");
-    dateSpan.innerHTML = ` ( ${dateString} )`;
-    dateSpan.className = "date-time";
-    li.appendChild(dateSpan);
-
-    let editButton = document.createElement("edit-btn");
-    editButton.className = "edit-btn";
-    editButton.onclick = function () {
-      editTask(li);
-    };
-
-    li.appendChild(editButton);
-
-    let span = document.createElement("span");
-    span.innerHTML = "\u00d7";
-    li.appendChild(span);
-
-    listContainer.appendChild(li);
+  if (inputBox.value === "" || dueDateInput.value === "") {
+    alert("Task and due date cannot be empty!");
+    return;
   }
-  inputBox.value = "";
-  saveData();
+
+  let li = document.createElement("li");
+  li.innerHTML = inputBox.value;
+
+  const dueDate = new Date(dueDateInput.value);
+  const dueDateString = `${dueDate.getDate()}/${
+    dueDate.getMonth() + 1
+  }/${dueDate.getFullYear()}`;
+
+  const currentDate = new Date();
+  const createdDateString = `${currentDate.getDate()}/${
+    currentDate.getMonth() + 1
+  }/${currentDate.getFullYear()}`;
+  const createdTimeString = `${currentDate.getHours()}:${String(
+    currentDate.getMinutes()
+  ).padStart(2, "0")}`;
+
+  const dropdown = document.createElement("select");
+  dropdown.className = "task-dropdown";
+  dropdown.style.display = "none";
+
+  const createdOption = document.createElement("option");
+  createdOption.className = "showdue";
+  createdOption.value = "created";
+  createdOption.text = `Created: ${createdDateString} ${createdTimeString}`;
+  dropdown.appendChild(createdOption);
+
+  const dueOption = document.createElement("option");
+  dueOption.value = "due";
+  dueOption.text = `Due: ${dueDateString}`;
+  dropdown.appendChild(dueOption);
+
+  li.appendChild(dropdown);
+
+  let showDropdownBtn = document.createElement("showdrpdwn-btn");
+  showDropdownBtn.className = "showdrpdwn-btn";
+  showDropdownBtn.onclick = function () {
+    dropdown.style.display =
+      dropdown.style.display === "none" ? "block" : "none";
+  };
+
+  li.appendChild(showDropdownBtn);
+
+  let editButton = document.createElement("edit-btn");
+  editButton.className = "edit-btn";
+  editButton.onclick = function () {
+    editTask(li);
+  };
+
+  li.appendChild(editButton);
+
+  let span = document.createElement("span");
+  span.innerHTML = "\u00d7";
+  li.appendChild(span);
+
+  listContainer.appendChild(li);
 }
+inputBox.value = "";
+dueDateInput.value = "";
+saveData();
 
 listContainer.addEventListener(
   "click",

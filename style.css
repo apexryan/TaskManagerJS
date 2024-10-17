@@ -127,6 +127,11 @@ button {
   cursor: pointer;
   border-radius: 40px;
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  margin-right: 50px;
+  cursor: pointer;
+  margin-top: 3px;
+}
 .date-time {
   font-size: 12px;
   color: #555;
@@ -154,6 +159,35 @@ button {
 .edit-btn:hover {
   background-color: #edeef0;
   border-radius: 50%;
+}
+.showdrpdwn-btn {
+  background-image: url(dropdown2.png);
+  background-size: 23px 23px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 23px;
+  height: 23px;
+  border: none;
+  padding: 20px;
+  margin-left: 365px;
+  margin-top: -4px;
+  cursor: pointer;
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+.showdrpdwn-btn::after {
+  content: none;
+}
+.showdrpdwn-btn:hover {
+  background-color: #edeef0;
+  border-radius: 50%;
+}
+
+.task-dropdown {
+  margin-left: 40px;
+  padding: 5px;
+  display: flex;
 }
 ul li {
   list-style: none;
