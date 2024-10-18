@@ -11,10 +11,7 @@
     <div class="upcontainer">
       <header>
         <h1>DASHBOARD</h1>
-        <div class="search-bar">
-          <input type="text" placeholder=" Search Tasks" />
-          <div class="icon"></div>
-        </div>
+        <div class="icon" ></div>
       </header>
 
       <main>
@@ -22,7 +19,8 @@
           <div class="taskm">
             <h2>Welcome Back!<img src="icon.png" /></h2>
             <div class="row">
-              <input type="date" id="due-date" placeholder="Select due date" />
+              <label for="due-date">Due Date | </label>
+              <input type="date" id="due-date" />
               <input
                 type="text"
                 id="input-box"
@@ -30,6 +28,10 @@
               />
               <button onclick="addtask()">+</button>
             </div>
+            <div class="search-bar">
+              <input type="text" id="search-bar" placeholder=" Search Tasks" />
+            </div>
+            <h4>Recent tasks</h4>
             <ul id="list-container">
               <!--<li class="checked">Task 1</li>
                 <li>Task 2</li>

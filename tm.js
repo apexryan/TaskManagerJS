@@ -1,6 +1,7 @@
 const inputBox = document.getElementById("input-box");
 const dueDateInput = document.getElementById("due-date");
 const listContainer = document.getElementById("list-container");
+const searchBar = document.getElementById("search-bar");
 
 function addtask() {
   if (inputBox.value === "" || dueDateInput.value === "") {
@@ -23,6 +24,20 @@ function addtask() {
   const createdTimeString = `${currentDate.getHours()}:${String(
     currentDate.getMinutes()
   ).padStart(2, "0")}`;
+
+  searchBar.addEventListener("input", function () {
+    const searchTerm = searchBar.value.toLowerCase();
+    const tasks = listContainer.getElementsByTagName("li");
+
+    for (let i = 0; i < tasks.length; i++) {
+      const taskText = tasks[i].firstChild.textContent.toLowerCase();
+      if (taskText.includes(searchTerm)) {
+        tasks[i].style.display = "";
+      } else {
+        tasks[i].style.display = "none";
+      }
+    }
+  });
 
   const dropdown = document.createElement("select");
   dropdown.className = "task-dropdown";
@@ -57,16 +72,19 @@ function addtask() {
   };
 
   li.appendChild(editButton);
+  saveData();
 
   let span = document.createElement("span");
   span.innerHTML = "\u00d7";
   li.appendChild(span);
 
   listContainer.appendChild(li);
+
+  inputBox.value = "";
+  dueDateInput.value = "";
+
+  saveData();
 }
-inputBox.value = "";
-dueDateInput.value = "";
-saveData();
 
 listContainer.addEventListener(
   "click",
@@ -95,7 +113,7 @@ function saveData() {
 }
 
 function displayTask() {
-  listContainer.innerHTML = localStorage.getItem("data");
+  listContainer.innerHTML = localStorage.getItem("data") || "";
 }
 
 displayTask();
