@@ -45,11 +45,12 @@ h1 {
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 30px;
-  border: 1px solid #166d3b;
+  border: 0px solid #166d3b;
   outline: none;
   font-size: 16px;
   color: #777;
-  background-color: white;
+  background-color: #efefef;
+  box-shadow: 0px 4px 20px rgba(195, 195, 195, 0.6);
 }
 h4 {
   font-size: 15px;
@@ -59,6 +60,83 @@ h4 {
   padding: 10px;
   position: absolute;
 }
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+  cursor: pointer;
+}
+.toggle-switch h4{
+  color: #9f9f9f;
+  font-size: 15px;
+  padding-left: 20px;
+  padding-right: 100px;
+  margin-left: 410px;
+  white-space: nowrap;   
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toggle-switch input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-switch-background {
+  position: absolute;
+  top: 0;
+  left: 550px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffffff, #e6e6e6);
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 2px #f1f1f1;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.toggle-switch-handle {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  right: -35px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #aaa;
+  text-shadow: 1px 1px #fff;
+  transition: color 0.3s ease-in-out;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-handle {
+  transform: translateX(45px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 3px #05c46b;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background {
+  background: linear-gradient(90deg, #1b1b1b, #080808);
+  box-shadow: inset 0 0 0 2px #111111;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch:before {
+  content: "On";
+  color: #05c46b;
+  right: -15px;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background .toggle-switch-handle {
+  transform: translateX(40px);
+}
+
 .icon {
   width: 75px;
   height: 75px;
@@ -94,7 +172,7 @@ footer pre {
 .taskm {
   width: 100%;
   max-width: 680px;
-  background: #fff;
+  background: linear-gradient(90deg, #ffffff, #e6e6e6);
   margin: 120px auto 20px;
   padding: 40px 30px 70px;
   border-radius: 20px;
@@ -114,32 +192,41 @@ footer pre {
   align-items: center;
   justify-content: space-between;
   background-color: #edeef0;
-  border-radius: 30px;
+  border-radius: 40px;
   padding-left: 20px;
   margin-bottom: 25px;
+  box-shadow: 0px 4px 20px rgba(195, 195, 195, 0.6);
+}
+.row pre{
+  font-size: 13px;
 }
 input {
   flex: 1;
   border: none;
   outline: none;
   background: transparent;
-  padding: 10px;  
+  padding: 25px;  
 }
 button {
   border: none;
   outline: none;
-  padding: 16px 50px;
+  padding: 25px 40px;
   background: #166d3b;
   color: #fff;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-  border-radius: 40px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 15px rgba(22, 109, 59, 0.6);
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
-  margin-right: 70px;
+  margin-right: 10px;
   cursor: pointer;
   margin-top: 3px;
+  background-color: #29bc4b;
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
 }
 label {
   font-size: 12px;
@@ -171,7 +258,7 @@ label {
   content: none;
 }
 .edit-btn:hover {
-  background-color: #edeef0;
+  background-color: #d9d9d9;
   border-radius: 50%;
 }
 .showdrpdwn-btn {
@@ -194,7 +281,7 @@ label {
   content: none;
 }
 .showdrpdwn-btn:hover {
-  background-color: #edeef0;
+  background-color: #d9d9d9;
   border-radius: 50%;
 }
 
@@ -207,8 +294,8 @@ label {
 ul li {
   list-style: none;
   font-size: 21px;
-  top: 50px;
-  padding: 15px 8px 12px 50px;
+  top: 40px;
+  padding: 12px 8px 12px 50px;
   user-select: none;
   cursor: pointer;
   position: relative;
@@ -246,5 +333,75 @@ ul li span {
   border-radius: 50%;
 }
 ul li span:hover {
-  background-color: #edeef0;
+  background-color: #d9d9d9;
+}
+#task-manager-section.dark-mode .upcontainer{
+  background: linear-gradient(90deg, #1b1b1b, #080808);
+  color: #f5f5f5;
+  border-radius: 20px;
+}
+#task-manager-section.dark-mode .row{
+  background-color: #333;
+  color: #f5f5f5;
+  box-shadow: 0px 4px 20px rgba(50, 50, 50, 0.6);
+}
+#task-manager-section.dark-mode .search-bar input{
+  box-shadow: 0px 4px 20px rgba(50, 50, 50, 0.6);
+}
+#task-manager-section.dark-mode .taskm{
+  background: linear-gradient(90deg, #1b1b1b, #080808);
+  color: #f5f5f5;
+  width: 100%;
+  max-width: 680px;
+  margin: 120px auto 20px;
+  padding: 40px 30px 70px;
+  border-radius: 20px;
+}
+#task-manager-section.dark-mode h4,
+#task-manager-section.dark-mode label, #task-manager-section.dark-mode::placeholder{
+  color: #f5f5f5;
+}
+#task-manager-section.dark-mode h2{
+  color: #29bc4b;
+}
+#task-manager-section.dark-mode input, 
+#task-manager-section.dark-mode button {
+  background-color: #333;
+  color: #fff;
+}
+#task-manager-section.dark-mode button {
+  background-color: #29bc4b;
+}
+#task-manager-section.dark-mode .showdrpdwn-btn{
+  background-image: url(dropdownwhite.png);
+}
+#task-manager-section.dark-mode .edit-btn{
+  background-image: url(editwhite.png);
+}
+#task-manager-section.dark-mode ul li span{
+  color: #f5f5f5;
+}
+#task-manager-section.dark-mode ul li::before{
+  background-image: url(uncheckedbright.png);
+}
+#task-manager-section.dark-mode ul li.checked::before{
+  background-image: url(checkedbright.png);
+}
+#task-manager-section.dark-mode ul li.checked{
+  color: #f5f5f5;
+}
+#task-manager-section.dark-mode .task-dropdown{
+  background-color: #1c1c1c;
+  color: #f5f5f5;
+}
+#task-manager-section.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
+  background-color: #29bc4b;
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+}
+#task-manager-section.dark-mode ul li span:hover, #task-manager-section.dark-mode .showdrpdwn-btn:hover,
+#task-manager-section.dark-mode .edit-btn:hover{
+  background-color: #333;
+  border-radius: 50%;
 }

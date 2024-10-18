@@ -72,7 +72,6 @@ function addtask() {
   };
 
   li.appendChild(editButton);
-  saveData();
 
   let span = document.createElement("span");
   span.innerHTML = "\u00d7";
@@ -104,9 +103,28 @@ function editTask(taskItem) {
   var newTaskText = prompt("Edit your task:", taskItem.firstChild.textContent);
   if (newTaskText !== null && newTaskText !== "") {
     taskItem.firstChild.textContent = newTaskText;
-    saveData();
   }
 }
+const toggleDarkModeBtn = document.getElementById("toggledark");
+const taskManagerSection = document.getElementById("task-manager-section");
+if (localStorage.getItem("toggle-switch") === "enabled") {
+  taskManagerSection.classList.add("dark-mode");
+  toggleDarkModeBtn.textContent = "Switch to Light Mode"; 
+} else {
+  toggleDarkModeBtn.textContent = "Switch to Dark Mode"; 
+}
+
+toggleDarkModeBtn.addEventListener("click", () => {
+  taskManagerSection.classList.toggle("dark-mode");
+ 
+  if (taskManagerSection.classList.contains("")) {
+    localStorage.setItem("toggle-switch", "enabled");
+    toggleDarkModeBtn.textContent = "Switch to Light Mode"; 
+  } else {
+    localStorage.setItem("toggle-switch", "disabled");
+    toggleDarkModeBtn.textContent = "Switch to Dark Mode";
+  }
+});
 
 function saveData() {
   localStorage.setItem("data", listContainer.innerHTML);
@@ -114,6 +132,25 @@ function saveData() {
 
 function displayTask() {
   listContainer.innerHTML = localStorage.getItem("data") || "";
+  const tasks = listContainer.getElementsByTagName("li");
+
+  for (let i = 0; i < tasks.length; i++) {
+    const editButton = document.createElement("edit-btn");
+    editButton.className = "edit-btn";
+    editButton.onclick = function () {
+      editTask(tasks[i]);
+    };
+    tasks[i].appendChild(editButton);
+
+    const showDropdownBtn = tasks[i].querySelector(".showdrpdwn-btn");
+    const dropdown = tasks[i].querySelector(".task-dropdown");
+
+    if (showDropdownBtn && dropdown) {
+      showDropdownBtn.onclick = function () {
+        dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+      };
+    }
+  }
 }
 
 displayTask();
